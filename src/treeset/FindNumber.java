@@ -16,6 +16,10 @@ public class FindNumber {
                 }
             }
         }
+        Tset.remove(143);
+        Tset.size();
+        Tset.first();
+        Tset.last();
         int cnt = 0;
         for(int x : Tset){
             cnt++;
