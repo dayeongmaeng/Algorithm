@@ -18,7 +18,7 @@ public class 전화번호 {
      */
     public static void fillFrequencyTable(int[] data, int n, int[] table) {
         for(int i=0; i<n;i++){
-            table[data[i]] = table[data[i]] + 1;
+            table[data[i]] +=1;
         }
     }
 
@@ -31,15 +31,13 @@ public class 전화번호 {
     public static int getFrequentNumber(int[] data, int n) {
 
         fillFrequencyTable(data, n, table);
-        int max = 0;
-        int frequent_number = 0;
+        int frequent_number = 0; //0000~9999 중 가장 많이 등장한 번호
+        int[] table = new int[MAX_TABLE_LENGTH]; // table[x] := data에서 x가 등장한 횟수
 
-        for(int i=0; i<n; i++){
-            if(table[data[i]] > max){
-                max = table[data[i]];
-                frequent_number = data[i];
-            }else if(table[data[i]] == max){
-                frequent_number = data[i] > frequent_number ? frequent_number : data[i];
+        for(int number=0; number<n; number++){
+            int count = table[number];
+            if(count > table[frequent_number]) {
+                frequent_number = number;
             }
         }
         //0000~9999중  가장 많이 등장한 번호

@@ -17,10 +17,38 @@ public class 페인트 {
     public static void solve(int n, int m, Painting[] paintings) {
         int[] seats = new int[n]; //seats[i] := i번 좌석의 최종 색상
 
+        //주어진 색상 정보에 따라처 최종 생칠 정보를 시몰레이션 로직
+        for(Painting p : paintings){
+            // p:= 모든 paintings의 원소가 차례로 한 번씩
+            //searts[left] ~ searts[right] 까지 전부 색상 x로 덜어쓰자 (색상은 섞이지 않는다)
+            for(int i=p.left; i <=p.right;i++){
+                seats[i] = p.color;
+            }
+        }
+
+        int[] table; //table[c] := 색상 x가 seats내에서 등장한 회수
+        table = new int[100];
+
+        for(int i=0; i<n; i ++){
+            table[seats[i]] += 1;
+        }
+
+        //1번째 -> 1번도 등장하지 않은 색상은 초기화X
+        //2번째 -> 같은 조건이면 '색상값이' 번호가 작은 애들 우선
         int minColor = -1; //가장 적게 등장한 색상
         int maxColor = -1; //가장 많이 등장한 색상
 
+        for(int color=0; color <= 99; color++){
+            //color := 0 ~ 99 사이의 모든 색상
+            if(table[color] == 0) continue;
+            if(minColor == -1 || table[color] < table[minColor]) {
+                minColor = color;
+            }
+            if(maxColor == -1 || table[color] > table[maxColor]) {
+                maxColor = color;
+            }
 
+        }
 
 
         System.out.println(maxColor);

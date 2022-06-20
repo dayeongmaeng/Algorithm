@@ -8,7 +8,7 @@ public class 버블정렬_구현하기 {
 
     public static void bubbleSort(int[] data, int n) {
         for(int i = 0 ; i < n ; i++) {
-            for(int j=0; j<i; j++){
+            for(int j=0; j<n-i-1; j++){
                 if(data[j] > data[j+1]){
                     int tmp = data[j];
                     data[j] = data[j+1];
